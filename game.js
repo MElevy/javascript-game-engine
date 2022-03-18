@@ -57,18 +57,17 @@ const Game = class {
     }
 };
 
-const game = new Game();
-
 const Rect = class {
-    constructor(x, y, width, height, fillColor) {
+    constructor(gameObj, x, y, width, height, fillColor) {
         this.x = x, this.y = y;
+        this.gameObj = gameObj;
         this.fillColor = fillColor;
         this.width = width, this.height = height;
     }
     update() {}
     draw() {
         this.update();
-        game.Rect(this.x, this.y, this.width, this.height, this.fillColor);
+        this.gameObj.Rect(this.x, this.y, this.width, this.height, this.fillColor);
     }
     isColliding(other) {
         let left = this.x, right = this.x + this.width;
@@ -84,15 +83,16 @@ const Rect = class {
 }
 
 const Sprite = class {
-    constructor(source, x, y, width, height) {
+    constructor(gameObj, source, x, y, width, height) {
         this.source = source;
         this.x = x, this.y = y;
+        this.gameObj = gameObj;
         this.width = width, this.height = height;
     }
     update() {}
     draw() {
         this.update();
-        game.Image(this.source, this.x, this.y, this.height, this.width);
+        this.gameObj.Image(this.source, this.x, this.y, this.height, this.width);
     }
     isColliding(other) {
         let left = this.x, right = this.x + this.width;
@@ -110,11 +110,10 @@ const Sprite = class {
 const Sound = class {
     constructor(source) {
         this.source = source;
-        this.sound = document.createElement('audio');
+        this.sound = new Audio(this.source);
         this.sound.setAttribute('preload', 'auto');
         this.sound.setAttribute('controls', 'none');
         this.sound.style.display = 'none';
-        // document.body.appendChild(this.sound);
     }
     play() {
         this.sound.src = this.source;

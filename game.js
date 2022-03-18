@@ -1,10 +1,10 @@
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
-const DOWN_ARROW = 38;
-const UP_ARROW = 40;
+const DOWN_ARROW = 40;
+const UP_ARROW = 38;
 
 const Game = class {
-    constructor(height = 270, width = 480, style = 'border:2px solid black;width:100%;', intervalTime = 20) {
+    constructor(height = 240, width = 480, style = 'border:2px solid black;width:100%;', intervalTime = 20) {
         this.intervalTime = intervalTime;
         this.width = width;
         this.style = style;
